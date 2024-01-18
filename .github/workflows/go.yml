@@ -39,15 +39,20 @@ jobs:
       
   build:
     needs: test
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: ['ubuntu-latest']
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     
     - name: Build
       run: go build -v main.go
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.2.0
+      with:
+        name: Go API
+        path: main
+        retention-days: 1
+        overwrite: true
 
   docker:
     needs: build

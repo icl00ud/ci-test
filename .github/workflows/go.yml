@@ -46,15 +46,19 @@ jobs:
     - name: Build
       run: go build -v main.go
 
-    - name: Generate list using Markdown
-      run: echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
-    
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.2.0
       with:
         name: Go API
         path: main
         retention-days: 1
+        
+    - name: Message
+      run: |
+        echo "###:rocket: Build summary:" >> $GITHUB_STEP_SUMMARY
+        echo "Application builded and artifact uploaded to github workspace" >> $GITHUB_STEP_SUMMARY
+        echo "Artifact uploaded to github workspace successfully" >> $GITHUB_STEP_SUMMARY
+        echo "**artifact retention: 1 day" >> $GITHUB_STEP_SUMMARY
         
   docker:
     needs: build

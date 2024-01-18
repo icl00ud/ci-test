@@ -9,17 +9,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Writing step summary
-        run: |
-          echo "Downloading the image!" >> $GITHUB_STEP_SUMMARY
-          echo "Repository: ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
-          echo "Run id: ${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
-
       - name: Download a Build Artifact
         uses: actions/download-artifact@v4.1.1
         with:
           name: Go API
-  
+
+      - name: Message
+        run: |
+          echo "###Artifact download summary:" >> $GITHUB_STEP_SUMMARY
+          echo "Artifact downloaded, proceeding to upload the image on docker hub" >> $GITHUB_STEP_SUMMARY
+
   docker:
     needs: download_image
     runs-on: ubuntu-latest
@@ -42,4 +41,8 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: icl00ud/go_ci:${{ github.ref_name }}
-          
+
+    - name: Message
+      run: |
+          echo "###Docker summary:" >> $GITHUB_STEP_SUMMARY
+          echo "Image uploaded successfully to docker hub!" >> $GITHUB_STEP_SUMMARY

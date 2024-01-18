@@ -16,7 +16,6 @@ jobs:
 
       - name: Message
         run: |
-          echo "###Artifact download summary:" >> $GITHUB_STEP_SUMMARY
           echo "Artifact downloaded, proceeding to upload the image on docker hub" >> $GITHUB_STEP_SUMMARY
 
   docker:
@@ -44,5 +43,4 @@ jobs:
 
     - name: Message
       run: |
-          echo "###Docker summary:" >> $GITHUB_STEP_SUMMARY
           echo "Image uploaded successfully to docker hub!" >> $GITHUB_STEP_SUMMARY

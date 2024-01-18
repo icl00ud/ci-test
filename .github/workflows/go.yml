@@ -55,7 +55,6 @@ jobs:
         
     - name: Message
       run: |
-        echo "###:rocket: Build summary:" >> $GITHUB_STEP_SUMMARY
         echo "Application builded and artifact uploaded to github workspace" >> $GITHUB_STEP_SUMMARY
         echo "Artifact uploaded to github workspace successfully" >> $GITHUB_STEP_SUMMARY
         echo "**artifact retention: 1 day" >> $GITHUB_STEP_SUMMARY

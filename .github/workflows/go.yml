@@ -46,14 +46,16 @@ jobs:
     - name: Build
       run: go build -v main.go
 
+    - name: Generate list using Markdown
+      run: echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+    
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.2.0
       with:
         name: Go API
         path: main
         retention-days: 1
-        overwrite: true
-
+        
   docker:
     needs: build
     uses: ./.github/workflows/Docker.yml

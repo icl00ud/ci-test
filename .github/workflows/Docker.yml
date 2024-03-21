@@ -16,7 +16,7 @@ jobs:
 
       - name: Message
         run: |
-          echo "Artifact downloaded, proceeding to upload the image on docker hub" >> $GITHUB_STEP_SUMMARY
+          echo "Artifact downloaded proceeding to upload the image on docker hub" >> $GITHUB_STEP_SUMMARY
 
   docker:
     needs: download_image
